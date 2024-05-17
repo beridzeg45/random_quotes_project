@@ -1,0 +1,6 @@
+streamlit
+pandas
+matplotlib
+sqlite3
+requests
+bs4
