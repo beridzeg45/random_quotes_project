@@ -95,5 +95,5 @@ with col1:
 
 fig, ax = plt.subplots(figsize=(8,4))
 fig_data = df.groupby(df['timestamp'].dt.to_period('D'))['search_id'].count()
-fig_data.plot.line(marker='.', xlabel='Date', ylabel='Visitors', title='Number Of Searches By Date', ax=ax)
+fig_data.plot.line(marker='.', xlabel='Date', ylabel='Search Count', title='Number Of Searches By Date', ax=ax)
 col2.pyplot(fig)
