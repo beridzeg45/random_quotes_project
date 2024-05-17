@@ -53,7 +53,7 @@ input_value = st.text_input('Enter a keyword to search for quotes (E.g. Friedric
 
 if st.button('Random Quote') and input_value:
     input_value_as_list = '+'.join([i.strip() for i in input_value.split(' ')])
-    url = f'https://www.goodreads.com/quotes/search?commit=Search&page={random.choice(range(1,1))}&q={input_value_as_list}'
+    url = f'https://www.goodreads.com/quotes/search?commit=Search&page={random.choice(range(1,2))}&q={input_value_as_list}'
 
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     append_to_database(input_value,current_time)
