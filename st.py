@@ -51,7 +51,7 @@ st.text('')
 # Input text box for user to enter the search term
 input_value = st.text_input('Enter a keyword to search for quotes (E.g. Friedrich Nietzsche, life, fight club, etc.):')
 
-if st.button('Random Quote') and input_value:
+if st.button('Show Quote') and input_value:
     input_value_as_list = '+'.join([i.strip() for i in input_value.split(' ')])
     url = f'https://www.goodreads.com/quotes/search?commit=Search&page={random.choice(range(1,2))}&q={input_value_as_list}'
 
