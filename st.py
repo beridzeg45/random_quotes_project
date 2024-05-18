@@ -90,7 +90,7 @@ df['timestamp']=pd.to_datetime(df['timestamp'])
 top_10=df.groupby('keyword')['search_id'].count().sort_values(ascending=False).reset_index().rename(columns={'keyword':'Keyword','search_id':'Search Count'}).head(10)
 with col1:
     st.subheader('10 Most Frequently Searched Keywords')
-    st.dataframe(top_10)
+    st.dataframe(top_10,use_container_width=True)
 
 
 fig, ax = plt.subplots(figsize=(8,4))
