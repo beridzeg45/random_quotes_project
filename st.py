@@ -84,15 +84,17 @@ conn.close()
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
-col1, col2 = st.columns(2)
+#col1, col2 = st.columns(2)
 df['timestamp']=pd.to_datetime(df['timestamp'])
-top_10=df.groupby('keyword')['search_id'].count().sort_values(ascending=False).reset_index().rename(columns={'keyword':'Keyword','search_id':'Search Count'}).head(10)
-with col1:
-    st.subheader('10 Most Frequently Searched Keywords')
-    st.dataframe(top_10,use_container_width=True)
+top_10=df.groupby('keyword')['search_id'].count().sort_values(ascending=False).reset_index().rename(columns={'keyword':'Keyword','search_id':'Search Count'}).head(5)
+#with col1:
+#    st.subheader('10 Most Frequently Searched Keywords')
+#    st.dataframe(top_10,use_container_width=True)
+st.sidebar.subheader('10 Most Frequently Searched Keywords')
+st.sidebar.dataframe(top_10,use_container_width=True)
 
 
 fig, ax = plt.subplots(figsize=(10,4))
 fig_data = df.groupby(df['timestamp'].dt.to_period('D'))['search_id'].count()
-fig_data.plot.line(marker='.', xlabel='Date', ylabel='Search Count', title='Number Of Searches By Date', ax=ax)
-col2.pyplot(fig)
+fig_data.plot.line(marker='o', xlabel='Date', ylabel='Search Count', title='Number Of Searches By Date', ax=ax)
+st.sidebar.pyplot(fig)
