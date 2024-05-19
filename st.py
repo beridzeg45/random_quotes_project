@@ -83,7 +83,6 @@ df = pd.read_sql_query("SELECT * FROM searches", conn)
 conn.close()
 
 st.markdown("<br><br>", unsafe_allow_html=True)
-st.header('Website Traffic And Search Stats')
 
 col1, col2 = st.columns(2)
 df['timestamp']=pd.to_datetime(df['timestamp'])
