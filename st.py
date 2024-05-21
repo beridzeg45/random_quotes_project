@@ -89,3 +89,12 @@ fig_data = df.groupby(df['timestamp'].dt.to_period('D'))['search_id'].count()
 fig_data.plot.line(marker='o', xlabel='Date', ylabel='Search Count', title='Number Of Searches By Date', ax=ax)
 ax.set_xlabel(None)
 st.sidebar.pyplot(fig)
+
+
+with open("searchesDB.db", "rb") as file:
+    st.sidebar.download_button(
+        label="Download Database",
+        data=file,
+        file_name="searchesDB.db",
+        mime="application/octet-stream"
+    )
