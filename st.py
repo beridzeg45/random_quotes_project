@@ -44,6 +44,7 @@ def append_to_database(selected_value, current_time):
     conn.close()
 
 
+
 #streamlit app
 st.set_page_config(layout="wide")
 st.header('Daily Quotes By beridzeg45 😉')
@@ -61,6 +62,7 @@ if st.button('Show Quote') and input_value:
     random_quote = return_random_quote(url)
     st.markdown(f"<h1 style='font-size:24px;'>{random_quote}</h1>", unsafe_allow_html=True)
 
+
 st.sidebar.markdown("# About me:")
 intro_text = """
 Hi!👋 \n
@@ -69,6 +71,7 @@ It involves following python libraries in action: requests, bs4, sqlite3.\n
 If you're curious about the code and want to explore it, feel free to visit my [Github account!](https://github.com/beridzeg45)\n
 """
 st.sidebar.markdown(intro_text)
+
 
 conn = sqlite3.connect('searchesDB.db')
 df = pd.read_sql_query("SELECT * FROM searches", conn)
