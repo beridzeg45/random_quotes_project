@@ -42,9 +42,6 @@ input_value = st.text_input('Enter a keyword to search for quotes (E.g. Friedric
 if st.button('Show Quote') and input_value:
     input_value_as_list = '+'.join([i.strip() for i in input_value.split(' ')])
     url = f'https://www.goodreads.com/quotes/search?commit=Search&page={random.choice(range(1, 2))}&q={input_value_as_list}'
-
-    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    append_to_database(input_value, current_time)
     
     random_quote = return_random_quote(url)
     st.markdown(f"<h1 style='font-size:24px;'>{random_quote}</h1>", unsafe_allow_html=True)
