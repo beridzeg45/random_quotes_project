@@ -2,7 +2,6 @@ import streamlit as st
 from bs4 import BeautifulSoup
 import requests
 import random
-import sqlite3
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -66,29 +65,3 @@ If you're curious about the code and want to explore it, feel free to visit my [
 """
 st.sidebar.markdown(intro_text)
 
-# Read from database and display statistics
-conn = sqlite3.connect('searchesDB.db')
-df = pd.read_sql_query("SELECT * FROM searches", conn)
-conn.close()
-
-df['timestamp'] = pd.to_datetime(df['timestamp'])
-top_10 = df.groupby('keyword')['search_id'].count().sort_values(ascending=False).reset_index().rename(columns={'keyword': 'Keyword', 'search_id': 'Search Count'}).head(5)
-
-st.sidebar.markdown("<br><br>", unsafe_allow_html=True)
-st.sidebar.subheader('5 Most Frequently Searched Keywords')
-st.sidebar.dataframe(top_10, use_container_width=True)
-
-fig, ax = plt.subplots(figsize=(5, 4))
-fig_data = df.groupby(df['timestamp'].dt.to_period('D'))['search_id'].count()
-fig_data.plot.line(marker='o', xlabel='Date', ylabel='Search Count', title='Number Of Searches By Date', ax=ax)
-ax.set_xlabel(None)
-st.sidebar.pyplot(fig)
-
-# Database download button
-with open("searchesDB.db", "rb") as file:
-    st.sidebar.download_button(
-        label="Download Database",
-        data=file,
-        file_name="searchesDB.db",
-        mime="application/octet-stream"
-    )
