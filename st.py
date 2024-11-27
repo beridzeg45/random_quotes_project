@@ -27,16 +27,6 @@ def return_random_quote(url):
     else:
         return "No quotes found."
 
-def append_to_database(selected_value, current_time):
-    conn = sqlite3.connect('searchesDB.db')
-    cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS searches (
-                      search_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      keyword TEXT,
-                      timestamp TEXT)''')
-    cursor.execute("INSERT INTO searches (keyword, timestamp) VALUES (?, ?)", (selected_value, current_time))
-    conn.commit()
-    conn.close()
 
 # Streamlit app
 st.set_page_config(layout="wide")
@@ -50,7 +40,6 @@ if st.button('Show Quote') and input_value:
     url = f'https://www.goodreads.com/quotes/search?commit=Search&page={random.choice(range(1, 2))}&q={input_value_as_list}'
 
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    append_to_database(input_value, current_time)
     
     random_quote = return_random_quote(url)
     st.markdown(f"<h1 style='font-size:24px;'>{random_quote}</h1>", unsafe_allow_html=True)
@@ -60,7 +49,6 @@ st.sidebar.markdown("# About me:")
 intro_text = """
 Hi!👋 \n
 I'm Giorgi, and this is my another python project. This website recommends quotes based on the keyword.\n
-It involves following python libraries in action: requests, bs4, sqlite3.\n
 If you're curious about the code and want to explore it, feel free to visit my [Github account!](https://github.com/beridzeg45)\n
 """
 st.sidebar.markdown(intro_text)
