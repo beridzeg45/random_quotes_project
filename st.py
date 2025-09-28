@@ -30,7 +30,7 @@ def return_random_quote(url):
 
 # Streamlit app
 st.set_page_config(layout="wide")
-st.header('Daily Quotes By beridzeg45 😉')
+st.header('Daily Quotes By beridzeg45')
 st.text('')
 
 input_value = st.text_input('Enter a keyword to search for quotes (E.g. Friedrich Nietzsche, life, fight club, etc.):')
